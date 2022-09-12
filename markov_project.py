@@ -12,25 +12,25 @@ from scipy.io.wavfile import write
 class ImageSelection:
 
     def __init__(self, transition_matrix):
-        """Simulates a musician that relies on a simple Markov chain.
+        """Simulates an image selection process from a simple Markov chain.
            Args:
                 transition_matrix (dict): transition probabilities
         """
         self.transition_matrix = transition_matrix
         self.image_type = list(transition_matrix.keys())
 
-    def get_next_note(self, current_note):
-        """Decides which note to play next based on the current note.
+    def choose_next_image(self, current_image):
+        """Decides which type of image to select based on the current image type.
            Args:
-               current_note (str): the current note being played.
+               current_image (str): the current image of the sequence.
         """
         return np.random.choice(
-            self.notes,
-            p=[self.transition_matrix[current_note][next_note] \
-            for next_note in self.notes]
+            self.images,
+            p=[self.transition_matrix[current_image][next_image] \
+            for next_image in self.images]
         )
 
-    def compose_melody(self, current_note="A", song_length=3):
+    def create_sequence(self, current_image="Kicking", length=3):
         """Generates a sequence of notes.
            Args:
                 current_note (str): the note of the song that we are currently
@@ -39,10 +39,10 @@ class ImageSelection:
                 song.
         """
         melody = []
-        while len(melody) < song_length:
-            next_note = self.get_next_note(current_note)
+        while len(melody) < length:
+            next_note = self.get_next_note(current_image)
             melody.append(next_note)
-            current_note = next_note
+            current_image = next_note
         return melody
 
     def get_wave(self, frequency=440, duration=0.3, max_amplitude=4096):
@@ -82,13 +82,14 @@ class ImageSelection:
 
 def main():
 
-    song_maker = ImageSelection({
+    instragram_post = ImageSelection({
         "Kicking": {"Kicking": 0.2, "Standing": 0.5, "Catching": 0.3},
         "Standing": {"Kicking": 0.4, "Standing": 0.1, "Catching": 0.5},
         "Catching": {"Kicking": 0.4, "Standing": 0.4, "Catching": 0.2}
     })
-    
-    #new_song = song_maker.compose_melody(current_note="C", song_length=10)
+    number_images = int(input("How many images do you want to post?"))
+    first_image = input("What type of image should the first picture be? (Kicking, Standing, Catching)")
+    new_post = instragram_post.create_sequence(current_image=str(first_image), length=number_images)
 
     print("Selecting the desired images...")
     print("Choosing a caption...")
