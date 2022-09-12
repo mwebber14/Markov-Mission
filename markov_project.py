@@ -82,17 +82,19 @@ class ImageSelection:
 
 def main():
 
-    song_maker = MarkovMusician({
+    song_maker = ImageSelection({
         "Kicking": {"Kicking": 0.2, "Standing": 0.5, "Catching": 0.3},
         "Standing": {"Kicking": 0.4, "Standing": 0.1, "Catching": 0.5},
         "Catching": {"Kicking": 0.4, "Standing": 0.4, "Catching": 0.2}
     })
     
-    '''new_song = song_maker.compose_melody(current_note="C", song_length=10)
-    print("Here's my latest song:", new_song)
-    print("Writing song to file...")
-    song_maker.write_sound_file(new_song)
-    print("Process completed!")'''
+    #new_song = song_maker.compose_melody(current_note="C", song_length=10)
+
+    print("Selecting the desired images...")
+    print("Choosing a caption...")
+   # song_maker.write_sound_file(new_song)
+    
+    print("Your Instagram post has been created!")
 
 if __name__ == "__main__":
     main()
