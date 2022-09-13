@@ -52,29 +52,26 @@ class ImageSelection:
             current_image = next_image
         return images
 
-    def present_images(self):
+    def present_images(self, list_images):
         '''
         Returns a random photo for the desired type of photo
         Args:
             image_list (list): the types of images to random select
         '''
-        '''for 
-        for directory in os.listdir(data_dir):
-            path = os.path.join(data_dir, directory)
-            # Iterate through each file in the directory
-            if os.path.isdir(path):
-                for file in os.listdir(path):
-                    image = cv2.imread(os.path.join(path, file))
-                    # Resize the image
-                    image = cv2.resize(image, (IMG_WIDTH, IMG_HEIGHT))'''
+        
         path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
-        files=os.listdir(path)
-        d=random.choice(files)
-        os.startfile(d)
+        random_filename = random.choice([
+            x for x in os.listdir(path)
+            if os.path.isfile(os.path.join(path, x))
+        ])
+
+        return random_filename
+
+
 def main():
 
     # Creation of the transition probabilities
-    instragram_post = ImageSelection({
+    instagram_post = ImageSelection({
         "Kicking": {"Kicking": 0.2, "Standing": 0.5, "Catching": 0.3},
         "Standing": {"Kicking": 0.4, "Standing": 0.1, "Catching": 0.5},
         "Catching": {"Kicking": 0.4, "Standing": 0.4, "Catching": 0.2}
@@ -85,11 +82,12 @@ def main():
     number_images = int(input("How many images do you want to post?     "))
     first_image = input("What type of image should the first picture \
 be? (Kicking, Standing, Catching)   ")
-    new_post = instragram_post.create_sequence(
+    new_post = instagram_post.create_sequence(
         current_image=first_image, length=number_images
     )
     print(new_post)
     print("Selecting the desired images...")
+    print(instagram_post.present_images(new_post))
     print("Choosing a caption...")
     print("Your Instagram post has been created!")
 
