@@ -53,12 +53,14 @@ class ImageSelection:
 
     def present_images(self, list_images):
         '''
-        Returns a list of paths for the desired type of photo. Each photo type 
+        Returns a list of paths for the desired type of photo. Each photo type
         is randomly selected from the corresponding folder
         Args:
             image_list (list): the types of images to random select
-        The following website is where I discovered how to access the different photo files using code
-        I should determine how to solve the issue from the operating system so that this program can be used generally
+        The following website is where I discovered how to access the
+        different photo files using code.
+        I should determine how to solve the issue from the operating
+        system so that this program can be used generally.
             https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python
         '''
         name_of_images = []
@@ -79,8 +81,9 @@ Mission/Markov-Mission/Kicking"
                 if os.path.isfile(os.path.join(path, x))
             ])
 
-            # Need to concatenate the file name to the path so we have the complete image
-            name_of_images.append(path + "/" +random_filename)
+            # Need to concatenate the file name to the
+            # path so we have the complete image
+            name_of_images.append(path + "/" + random_filename)
 
         return name_of_images
 
@@ -90,14 +93,24 @@ def main():
     # Creation of the transition probabilities
     instagram_post = ImageSelection({
         "Kicking": {"Kicking": 0.2, "Standing": 0.5, "Catching": 0.3},
-        "Standing": {"Kicking": 0.4, "Standing": 0.1, "Catching": 0.5},
-        "Catching": {"Kicking": 0.4, "Standing": 0.4, "Catching": 0.2}
+        "Standing": {"Kicking": 0.2, "Standing": 0.1, "Catching": 0.7},
+        "Catching": {"Kicking": 0.6, "Standing": 0.3, "Catching": 0.1}
     })
 
     # Prompt the user for the number of images the user wants
     # as well as the type of image they would like to be the first
-    number_images = int(input("How many images do you want to post? (1-5)     "))
+    number_images = int(input("How many images do you want to post? (1-5)   "))
+
+    while number_images < 1 or number_images > 5:
+        print("The number of images must be between 1 and 5.")
+        number_images = int(input("How many images do you want to post? (1-5)   "))
+
     first_image = input("What type of image should the first picture \
+be? (Kicking, Standing, Catching)   ")
+
+    while first_image.capitalize().strip() not in ["Kicking", "Standing", "Catching"]:
+        print("The image type must be one of these three options: Kicking, Standing, or Catching")
+        first_image = input("What type of image should the first picture \
 be? (Kicking, Standing, Catching)   ")
 
     # Creates the sequence of images we want
@@ -111,7 +124,7 @@ be? (Kicking, Standing, Catching)   ")
     for image in instagram_post.present_images(new_post):
         img = Image.open(image)
         img.show()
-    
+
     # NEED TO COMPLETE THE CAPTION PORTION
     print("Choosing a caption...")
     print("Your Instagram post has been created!")
