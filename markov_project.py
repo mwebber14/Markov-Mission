@@ -1,6 +1,6 @@
 """
 Image Selection Program
-There are probablities linked with the transition from one 
+There are probablities linked with the transition from one
 image to the next image. The user can specify how many images
 they would like to have in their "post". Using the transisition
 we will output the number of pictures. The picture type will
@@ -9,6 +9,7 @@ depend on the probabilities of it being selected
 from tkinter import image_types
 import numpy as np
 from scipy.io.wavfile import write
+
 
 class ImageSelection:
 
@@ -21,14 +22,14 @@ class ImageSelection:
         self.image_type = list(transition_matrix.keys())
 
     def choose_next_image(self, current_image):
-        """Decides which type of image to select based on the current image type.
+        """Decides which type of image to select based on the current type.
            Args:
                current_image (str): the current image of the sequence.
         """
         return np.random.choice(
             self.images,
-            p=[self.transition_matrix[current_image][next_image] \
-            for next_image in self.images]
+            p=[self.transition_matrix[current_image][next_image]
+               for next_image in self.images]
         )
 
     def create_sequence(self, current_image="Kicking", length=3):
@@ -81,6 +82,7 @@ class ImageSelection:
         sound_data = self.get_sound_waves_for(melody)
         write("new-hit-song.wav", SAMPLE_RATE, sound_data.astype(np.int16))'''
 
+
 def main():
 
     # Creation of the transition probabilities
@@ -93,14 +95,18 @@ def main():
     # Prompt the user for the number of images the user wants
     # as well as the type of image they would like to be the first
     number_images = int(input("How many images do you want to post?"))
-    first_image = input("What type of image should the first picture be? (Kicking, Standing, Catching)")
-    new_post = instragram_post.create_sequence(current_image=str(first_image), length=number_images)
+    first_image = input("What type of image should the first picture \
+                         be? (Kicking, Standing, Catching)")
+    new_post = instragram_post.create_sequence(
+        current_image=str(first_image), length=number_images
+    )
 
     print("Selecting the desired images...")
     print("Choosing a caption...")
-   # song_maker.write_sound_file(new_song)
-    
+    # song_maker.write_sound_file(new_song)
+
     print("Your Instagram post has been created!")
+
 
 if __name__ == "__main__":
     main()
