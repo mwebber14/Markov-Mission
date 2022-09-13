@@ -6,6 +6,7 @@ they would like to have in their "post". Using the transisition
 we will output the number of pictures. The picture type will
 depend on the probabilities of it being selected
 """
+from tkinter import image_types
 import numpy as np
 from scipy.io.wavfile import write
 
@@ -38,14 +39,14 @@ class ImageSelection:
                 song_length (int): how many notes we should generate for the
                 song.
         """
-        melody = []
-        while len(melody) < length:
-            next_note = self.get_next_note(current_image)
-            melody.append(next_note)
-            current_image = next_note
-        return melody
+        images = []
+        while len(images) < length:
+            next_image = self.get_next_note(current_image)
+            images.append(next_image)
+            current_image = next_image
+        return images
 
-    def get_wave(self, frequency=440, duration=0.3, max_amplitude=4096):
+    '''def get_wave(self, frequency=440, duration=0.3, max_amplitude=4096):
         """Retrieve sound wave for note based on given args...
            Args:
                frequency (float): the note frequency (affects the pitch)
@@ -78,15 +79,19 @@ class ImageSelection:
                melody (list): notes of our song
         """
         sound_data = self.get_sound_waves_for(melody)
-        write("new-hit-song.wav", SAMPLE_RATE, sound_data.astype(np.int16))
+        write("new-hit-song.wav", SAMPLE_RATE, sound_data.astype(np.int16))'''
 
 def main():
 
+    # Creation of the transition probabilities
     instragram_post = ImageSelection({
         "Kicking": {"Kicking": 0.2, "Standing": 0.5, "Catching": 0.3},
         "Standing": {"Kicking": 0.4, "Standing": 0.1, "Catching": 0.5},
         "Catching": {"Kicking": 0.4, "Standing": 0.4, "Catching": 0.2}
     })
+
+    # Prompt the user for the number of images the user wants
+    # as well as the type of image they would like to be the first
     number_images = int(input("How many images do you want to post?"))
     first_image = input("What type of image should the first picture be? (Kicking, Standing, Catching)")
     new_post = instragram_post.create_sequence(current_image=str(first_image), length=number_images)
