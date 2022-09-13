@@ -27,9 +27,9 @@ class ImageSelection:
                current_image (str): the current image of the sequence.
         """
         return np.random.choice(
-            self.images,
+            self.image_type,
             p=[self.transition_matrix[current_image][next_image]
-               for next_image in self.images]
+               for next_image in self.image_type]
         )
 
     def create_sequence(self, current_image="Kicking", length=3):
@@ -42,7 +42,7 @@ class ImageSelection:
         """
         images = []
         while len(images) < length:
-            next_image = self.get_next_note(current_image)
+            next_image = self.choose_next_image(current_image)
             images.append(next_image)
             current_image = next_image
         return images
@@ -94,8 +94,8 @@ def main():
 
     # Prompt the user for the number of images the user wants
     # as well as the type of image they would like to be the first
-    number_images = int(input("How many images do you want to post?"))
-    first_image = input("What type of image should the first picture \
+    number_images = int(input("How many images do you want to post?     "))
+    first_image = input("What type of image should the first picture\
                          be? (Kicking, Standing, Catching)")
     new_post = instragram_post.create_sequence(
         current_image=str(first_image), length=number_images
@@ -103,8 +103,6 @@ def main():
 
     print("Selecting the desired images...")
     print("Choosing a caption...")
-    # song_maker.write_sound_file(new_song)
-
     print("Your Instagram post has been created!")
 
 
