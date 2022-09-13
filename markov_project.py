@@ -58,14 +58,21 @@ class ImageSelection:
         Args:
             image_list (list): the types of images to random select
         '''
-        
-        path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
-        random_filename = random.choice([
-            x for x in os.listdir(path)
-            if os.path.isfile(os.path.join(path, x))
-        ])
+        name_of_images = []
+        for image in list_images:
+            if image == "Catching":
+                path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
+            if image == "Standing":
+                path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Standing"
+            else:
+                path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Kicking"
+            random_filename = random.choice([
+                x for x in os.listdir(path)
+                if os.path.isfile(os.path.join(path, x))
+            ])
+            name_of_images.append(random_filename)
 
-        return random_filename
+        return name_of_images
 
 
 def main():
@@ -85,9 +92,10 @@ be? (Kicking, Standing, Catching)   ")
     new_post = instagram_post.create_sequence(
         current_image=first_image, length=number_images
     )
-    print(new_post)
     print("Selecting the desired images...")
-    print(instagram_post.present_images(new_post))
+    for image in instagram_post.present_images(new_post):
+        print(image)
+    #print(instagram_post.present_images(new_post))
     print("Choosing a caption...")
     print("Your Instagram post has been created!")
 
