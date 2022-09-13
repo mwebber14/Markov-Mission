@@ -6,13 +6,11 @@ they would like to have in their "post". Using the transisition
 we will output the number of pictures. The picture type will
 depend on the probabilities of it being selected
 """
+from typing_extensions import final
 import numpy as np
 import random
 import os
 from PIL import Image
-
-IMG_WIDTH = 30
-IMG_HEIGHT = 30
 
 
 class ImageSelection:
@@ -111,7 +109,7 @@ def main():
     new_post = instagram_post.create_sequence(length=number_images)
     print(new_post)
     print("Selecting the desired images...")
-
+   
     # Opens the images in Preview
     for image in instagram_post.present_images(new_post):
         img = Image.open(image)
