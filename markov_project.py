@@ -6,9 +6,7 @@ they would like to have in their "post". Using the transisition
 we will output the number of pictures. The picture type will
 depend on the probabilities of it being selected
 """
-from tkinter import image_types
 import numpy as np
-from scipy.io.wavfile import write
 import random
 import os
 from PIL import Image
@@ -38,7 +36,7 @@ class ImageSelection:
                for next_image in self.image_type]
         )
 
-    def create_sequence(self, current_image="Kicking", length=3):
+    def create_sequence(self, length, current_image="Kicking"):
         """Generates a sequence of images.
            Args:
                 current_image (str): the type of image we are using
@@ -98,13 +96,13 @@ def main():
 
     # Prompt the user for the number of images the user wants
     # as well as the type of image they would like to be the first
-    number_images = int(input("How many images do you want to post?     "))
+    number_images = int(input("How many images do you want to post? (1-5)     "))
     first_image = input("What type of image should the first picture \
 be? (Kicking, Standing, Catching)   ")
 
     # Creates the sequence of images we want
     new_post = instagram_post.create_sequence(
-        current_image=first_image.strip(), length=number_images
+        length=number_images, current_image=first_image.capitalize().strip()
     )
     print(new_post)
     print("Selecting the desired images...")
