@@ -96,7 +96,7 @@ def main():
     # as well as the type of image they would like to be the first
     number_images = int(input("How many images do you want to post?     "))
     first_image = input("What type of image should the first picture\
-                         be? (Kicking, Standing, Catching)")
+be? (Kicking, Standing, Catching)   ")
     new_post = instragram_post.create_sequence(
         current_image=str(first_image), length=number_images
     )
