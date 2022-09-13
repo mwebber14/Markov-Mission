@@ -9,7 +9,12 @@ depend on the probabilities of it being selected
 from tkinter import image_types
 import numpy as np
 from scipy.io.wavfile import write
+import random
+import os
+import cv2
 
+IMG_WIDTH = 30
+IMG_HEIGHT = 30
 
 class ImageSelection:
 
@@ -33,56 +38,39 @@ class ImageSelection:
         )
 
     def create_sequence(self, current_image="Kicking", length=3):
-        """Generates a sequence of notes.
+        """Generates a sequence of images.
            Args:
-                current_note (str): the note of the song that we are currently
-                looking at.
-                song_length (int): how many notes we should generate for the
-                song.
+                current_image (str): the type of image we are using
+                length (int): how many images we should generate for the
+                post.
         """
         images = []
+        images.append(current_image)
         while len(images) < length:
             next_image = self.choose_next_image(current_image)
             images.append(next_image)
             current_image = next_image
         return images
 
-    '''def get_wave(self, frequency=440, duration=0.3, max_amplitude=4096):
-        """Retrieve sound wave for note based on given args...
-           Args:
-               frequency (float): the note frequency (affects the pitch)
-               duration  (float): the length of the note
-               max_amplitude (num): how loud we want this note to be
-        """
-        time = np.linspace(0, duration, int(SAMPLE_RATE * duration))
-        # print("Time: ", time)
-        sound_wave = max_amplitude * np.sin(2 * np.pi * frequency * time)
-        # print("Sound Wave: ", sound_wave)
-        return sound_wave
-
-    def get_sound_waves_for(self, melody):
-        """Transforms the string melody into a list of sound waves.
-           Args:
-               melody (list): notes of our song
-        """
-        song = []
-        for current_note in melody:
-            sound_wave = self.get_wave(NOTE_FREQUENCIES[current_note])
-            song.append(sound_wave)
-        # print("Song is now", song)
-        song = np.concatenate(song)
-        # print("Song is now", song)
-        return song
-
-    def write_sound_file(self, melody):
-        """Write out a collection of sound waves (i.e., a song!) to a file.
-           Args:
-               melody (list): notes of our song
-        """
-        sound_data = self.get_sound_waves_for(melody)
-        write("new-hit-song.wav", SAMPLE_RATE, sound_data.astype(np.int16))'''
-
-
+    def present_images(self):
+        '''
+        Returns a random photo for the desired type of photo
+        Args:
+            image_list (list): the types of images to random select
+        '''
+        '''for 
+        for directory in os.listdir(data_dir):
+            path = os.path.join(data_dir, directory)
+            # Iterate through each file in the directory
+            if os.path.isdir(path):
+                for file in os.listdir(path):
+                    image = cv2.imread(os.path.join(path, file))
+                    # Resize the image
+                    image = cv2.resize(image, (IMG_WIDTH, IMG_HEIGHT))'''
+        path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
+        files=os.listdir(path)
+        d=random.choice(files)
+        os.startfile(d)
 def main():
 
     # Creation of the transition probabilities
@@ -95,12 +83,12 @@ def main():
     # Prompt the user for the number of images the user wants
     # as well as the type of image they would like to be the first
     number_images = int(input("How many images do you want to post?     "))
-    first_image = input("What type of image should the first picture\
+    first_image = input("What type of image should the first picture \
 be? (Kicking, Standing, Catching)   ")
     new_post = instragram_post.create_sequence(
-        current_image=str(first_image), length=number_images
+        current_image=first_image, length=number_images
     )
-
+    print(new_post)
     print("Selecting the desired images...")
     print("Choosing a caption...")
     print("Your Instagram post has been created!")
