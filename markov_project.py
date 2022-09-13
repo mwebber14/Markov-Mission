@@ -55,7 +55,8 @@ class ImageSelection:
 
     def present_images(self, list_images):
         '''
-        Returns a random photo for the desired type of photo
+        Returns a list of paths for the desired type of photo. Each photo type 
+        is randomly selected from the corresponding folder
         Args:
             image_list (list): the types of images to random select
         The following website is where I discovered how to access the different photo files using code
@@ -64,19 +65,23 @@ class ImageSelection:
         '''
         name_of_images = []
         for image in list_images:
-            if image == "Catching":
+            if image == 'Catching':
                 path = "/Users/michaelwebber/Desktop/Markov \
 Mission/Markov-Mission/Catching"
-            if image == "Standing":
+            elif image == 'Standing':
                 path = "/Users/michaelwebber/Desktop/Markov \
 Mission/Markov-Mission/Standing"
             else:
                 path = "/Users/michaelwebber/Desktop/Markov \
 Mission/Markov-Mission/Kicking"
+
+            # Randomly selecting a file from the desired folder
             random_filename = random.choice([
                 x for x in os.listdir(path)
                 if os.path.isfile(os.path.join(path, x))
             ])
+
+            # Need to concatenate the file name to the path so we have the complete image
             name_of_images.append(path + "/" +random_filename)
 
         return name_of_images
@@ -96,16 +101,20 @@ def main():
     number_images = int(input("How many images do you want to post?     "))
     first_image = input("What type of image should the first picture \
 be? (Kicking, Standing, Catching)   ")
+
+    # Creates the sequence of images we want
     new_post = instagram_post.create_sequence(
-        current_image=first_image, length=number_images
+        current_image=first_image.strip(), length=number_images
     )
     print(new_post)
     print("Selecting the desired images...")
 
+    # Opens the images in Preview
     for image in instagram_post.present_images(new_post):
         img = Image.open(image)
         img.show()
     
+    # NEED TO COMPLETE THE CAPTION PORTION
     print("Choosing a caption...")
     print("Your Instagram post has been created!")
 
