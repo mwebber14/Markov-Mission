@@ -6,12 +6,16 @@ they would like to have in their "post". Using the transisition
 we will output the number of pictures. The picture type will
 depend on the probabilities of it being selected
 """
-from typing_extensions import final
 import numpy as np
 import random
 import os
 from PIL import Image
 
+# CONSTANTS
+# MAKE SURE TO MODIFY THE PATH WITH RESPECT TO THE DEVICE IT IS BEING EXECUTED ON
+PATH_STANDING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Standing"
+PATH_CATCHING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
+PATH_KICKING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Kicking"
 
 class ImageSelection:
 
@@ -65,14 +69,11 @@ class ImageSelection:
         name_of_images = []
         for image in list_images:
             if image == 'Catching':
-                path = "/Users/michaelwebber/Desktop/Markov \
-Mission/Markov-Mission/Catching"
+                path = PATH_CATCHING
             elif image == 'Standing':
-                path = "/Users/michaelwebber/Desktop/Markov \
-Mission/Markov-Mission/Standing"
+                path = PATH_STANDING
             else:
-                path = "/Users/michaelwebber/Desktop/Markov \
-Mission/Markov-Mission/Kicking"
+                path = PATH_KICKING
 
             # Randomly selecting a file from the desired folder
             random_filename = random.choice([
@@ -110,10 +111,20 @@ def main():
     print(new_post)
     print("Selecting the desired images...")
    
-    # Opens the images in Preview
+    '''# Opens the images in Preview
     for image in instagram_post.present_images(new_post):
         img = Image.open(image)
-        img.show()
+        img.show()'''
+    images = [
+        Image.open(image)
+        for image in instagram_post.present_images(new_post)
+    ]
+
+    pdf_path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/post.pdf"
+    
+    images[0].save(
+        pdf_path, "PDF" ,resolution=100.0, save_all=True, append_images=images[1:]
+    )
 
     # NEED TO COMPLETE THE CAPTION PORTION
     print("Choosing a caption...")
