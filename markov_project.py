@@ -11,10 +11,11 @@ import numpy as np
 from scipy.io.wavfile import write
 import random
 import os
-import cv2
+from PIL import Image
 
 IMG_WIDTH = 30
 IMG_HEIGHT = 30
+
 
 class ImageSelection:
 
@@ -57,20 +58,26 @@ class ImageSelection:
         Returns a random photo for the desired type of photo
         Args:
             image_list (list): the types of images to random select
+        The following website is where I discovered how to access the different photo files using code
+        I should determine how to solve the issue from the operating system so that this program can be used generally
+            https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python
         '''
         name_of_images = []
         for image in list_images:
             if image == "Catching":
-                path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
+                path = "/Users/michaelwebber/Desktop/Markov \
+Mission/Markov-Mission/Catching"
             if image == "Standing":
-                path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Standing"
+                path = "/Users/michaelwebber/Desktop/Markov \
+Mission/Markov-Mission/Standing"
             else:
-                path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Kicking"
+                path = "/Users/michaelwebber/Desktop/Markov \
+Mission/Markov-Mission/Kicking"
             random_filename = random.choice([
                 x for x in os.listdir(path)
                 if os.path.isfile(os.path.join(path, x))
             ])
-            name_of_images.append(random_filename)
+            name_of_images.append(path + "/" +random_filename)
 
         return name_of_images
 
@@ -92,10 +99,13 @@ be? (Kicking, Standing, Catching)   ")
     new_post = instagram_post.create_sequence(
         current_image=first_image, length=number_images
     )
+    print(new_post)
     print("Selecting the desired images...")
+
     for image in instagram_post.present_images(new_post):
-        print(image)
-    #print(instagram_post.present_images(new_post))
+        img = Image.open(image)
+        img.show()
+    
     print("Choosing a caption...")
     print("Your Instagram post has been created!")
 
