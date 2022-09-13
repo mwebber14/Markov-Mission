@@ -36,7 +36,7 @@ class ImageSelection:
                for next_image in self.image_type]
         )
 
-    def create_sequence(self, length, current_image="Kicking"):
+    def create_sequence(self, length):
         """Generates a sequence of images.
            Args:
                 current_image (str): the type of image we are using
@@ -44,6 +44,7 @@ class ImageSelection:
                 post.
         """
         images = []
+        current_image = random.choice(["Kicking", "Catching", "Standing"])
         images.append(current_image)
         while len(images) < length:
             next_image = self.choose_next_image(current_image)
@@ -101,22 +102,13 @@ def main():
     # as well as the type of image they would like to be the first
     number_images = int(input("How many images do you want to post? (1-5)   "))
 
+    # Makes sure the input is a number between 1 and 5
     while number_images < 1 or number_images > 5:
         print("The number of images must be between 1 and 5.")
         number_images = int(input("How many images do you want to post? (1-5)   "))
 
-    first_image = input("What type of image should the first picture \
-be? (Kicking, Standing, Catching)   ")
-
-    while first_image.capitalize().strip() not in ["Kicking", "Standing", "Catching"]:
-        print("The image type must be one of these three options: Kicking, Standing, or Catching")
-        first_image = input("What type of image should the first picture \
-be? (Kicking, Standing, Catching)   ")
-
     # Creates the sequence of images we want
-    new_post = instagram_post.create_sequence(
-        length=number_images, current_image=first_image.capitalize().strip()
-    )
+    new_post = instagram_post.create_sequence(length=number_images)
     print(new_post)
     print("Selecting the desired images...")
 
