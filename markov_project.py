@@ -114,7 +114,15 @@ def main():
     while file_name[-4:] != ".pdf":
         print("The filename must end in .pdf")
         file_name = input("What do you want to name your file? (must end in .pdf)   ")
-   
+
+    # This will be used to randomly select a caption
+    emotion = input("Are feeling motivated or defeated? Please select one.   ")
+    
+    while emotion.lower() != "motivated" or emotion.lower() != "defeated":
+        print("You must enter one of the two emotions (motivated or defeated")
+        emotion = input("Are feeling motivated or defeated? Please select one.   ")
+
+    
     # Creates the sequence of images we want
     new_post = instagram_post.create_sequence(length=number_images)
     print(new_post)
