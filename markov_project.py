@@ -6,6 +6,7 @@ they would like to have in their "post". Using the transisition
 we will output the number of pictures. The picture type will
 depend on the probabilities of it being selected
 """
+from fileinput import filename
 import numpy as np
 import random
 import os
@@ -16,6 +17,7 @@ from PIL import Image
 PATH_STANDING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Standing"
 PATH_CATCHING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
 PATH_KICKING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Kicking"
+PDF_PATH = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/"
 
 class ImageSelection:
 
@@ -106,21 +108,26 @@ def main():
         print("The number of images must be between 1 and 5.")
         number_images = int(input("How many images do you want to post? (1-5)   "))
 
+    file_name = input("What do you want to name your file? (must end in .pdf)   ")
+
+    # Makes sure the file name is acceptable
+    while file_name[-4:] != ".pdf":
+        print("The filename must end in .pdf")
+        file_name = input("What do you want to name your file? (must end in .pdf)   ")
+   
     # Creates the sequence of images we want
     new_post = instagram_post.create_sequence(length=number_images)
     print(new_post)
     print("Selecting the desired images...")
    
-    '''# Opens the images in Preview
-    for image in instagram_post.present_images(new_post):
-        img = Image.open(image)
-        img.show()'''
+    # Takes the list of files and puts them into one pdf
+    # that is saved to the users Markov-Mission folder
     images = [
         Image.open(image)
         for image in instagram_post.present_images(new_post)
     ]
 
-    pdf_path = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/post.pdf"
+    pdf_path = PDF_PATH + file_name
     
     images[0].save(
         pdf_path, "PDF" ,resolution=100.0, save_all=True, append_images=images[1:]
