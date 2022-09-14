@@ -64,9 +64,7 @@ class ImageSelection:
             image_list (list): the types of images to random select
         The following website is where I discovered how to access the
         different photo files using code.
-        I should determine how to solve the issue from the operating
-        system so that this program can be used generally.
-            https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python
+        https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python
         '''
         name_of_images = []
         for image in list_images:
@@ -88,6 +86,15 @@ class ImageSelection:
             name_of_images.append(path + "/" + random_filename)
 
         return name_of_images
+
+    def select_caption(self, filename):
+        '''
+        Given the specified emotion file, randomly select a quote from the file
+        Args:
+            filename (.txt file): a file containing emotion invoking quotes
+        '''
+        line = random.choice(open(filename).readlines())
+        return line
 
 
 def main():
@@ -143,6 +150,12 @@ def main():
 
     # NEED TO COMPLETE THE CAPTION PORTION
     print("Choosing a caption...")
+
+    if emotion == "motivated":
+        instagram_post.select_caption("Motivation Captions.txt")
+    else:
+        instagram_post.select_caption("Defeated Captions.txt")
+    
     print("Your Instagram post has been created!")
 
 
