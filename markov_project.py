@@ -94,7 +94,7 @@ class ImageSelection:
             filename (.txt file): a file containing emotion invoking quotes
         '''
         line = random.choice(open(filename).readlines())
-        return line
+        return line.strip()
 
 
 def main():
@@ -125,8 +125,8 @@ def main():
     # This will be used to randomly select a caption
     emotion = input("Are feeling motivated or defeated? Please select one.   ")
     
-    while emotion.lower() != "motivated" or emotion.lower() != "defeated":
-        print("You must enter one of the two emotions (motivated or defeated")
+    while emotion.strip().lower() != "motivated" and emotion.strip().lower() != "defeated":
+        print("You must enter one of the two emotions (motivated or defeated)")
         emotion = input("Are feeling motivated or defeated? Please select one.   ")
 
     
@@ -152,12 +152,16 @@ def main():
     print("Choosing a caption...")
 
     if emotion == "motivated":
-        instagram_post.select_caption("Motivation Captions.txt")
+        caption = instagram_post.select_caption("Motivation Captions.txt")
     else:
-        instagram_post.select_caption("Defeated Captions.txt")
+        caption = instagram_post.select_caption("Defeated Captions.txt")
     
-    print("Your Instagram post has been created!")
+    print("Your Instagram post has been created!\n")
 
+    print("Your photo(s) will appear in the project folder with the name you have given \
+and the caption for your photo(s) will appear below.")
+
+    print(caption + "\n")
 
 if __name__ == "__main__":
     main()
