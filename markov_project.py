@@ -148,7 +148,6 @@ def main():
         pdf_path, "PDF" ,resolution=100.0, save_all=True, append_images=images[1:]
     )
 
-    # NEED TO COMPLETE THE CAPTION PORTION
     print("Choosing a caption...")
 
     if emotion == "motivated":
