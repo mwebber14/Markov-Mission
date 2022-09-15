@@ -13,11 +13,12 @@ import os
 from PIL import Image
 
 # CONSTANTS
-# MAKE SURE TO MODIFY THE PATH WITH RESPECT TO THE DEVICE IT IS BEING EXECUTED ON
+# MAKE SURE TO MODIFY THE PATH WITH RESPECT TO THE DEVICE
 PATH_STANDING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Standing"
 PATH_CATCHING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
 PATH_KICKING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Kicking"
 PDF_PATH = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/"
+
 
 class ImageSelection:
 
@@ -52,7 +53,7 @@ class ImageSelection:
         current_image = random.choice(["Kicking", "Catching", "Standing"])
         images.append(current_image)
 
-        # The transition matrix is used for the selction of the 
+        # The transition matrix is used for the selction of the
         # remaining images if there are any
         while len(images) < length:
             next_image = self.choose_next_image(current_image)
@@ -130,17 +131,24 @@ def main():
 
     # This will be used to randomly select a caption
     emotion = input("Are feeling motivated or defeated? Please select one.   ")
-    
+
     while emotion.strip().lower() != "motivated" and emotion.strip().lower() != "defeated":
         print("You must enter one of the two emotions (motivated or defeated)")
         emotion = input("Are feeling motivated or defeated? Please select one.   ")
 
-    
     # Creates the sequence of images we want
     new_post = instagram_post.create_sequence(length=number_images)
-    print(new_post)
+
     print("Selecting the desired images...")
-   
+
+    print("Choosing a caption...")
+    # Determines which caption folder that needs to be entered based on the
+    # emotion that was expressed by the user
+    if emotion == "motivated":
+        caption = instagram_post.select_caption("Motivation Captions.txt")
+    else:
+        caption = instagram_post.select_caption("Defeated Captions.txt")
+
     # Takes the list of files and puts them into one pdf
     # that is saved to the users Markov-Mission folder
     images = [
@@ -149,26 +157,18 @@ def main():
     ]
 
     pdf_path = PDF_PATH + file_name
-    
+
     images[0].save(
-        pdf_path, "PDF" ,resolution=100.0, save_all=True, append_images=images[1:]
+        pdf_path, "PDF", resolution=100.0, save_all=True, append_images=images[1:]
     )
 
-    print("Choosing a caption...")
-
-    # Determines which caption folder that needs to be entered based on the 
-    # emotion that was expressed by the user
-    if emotion == "motivated":
-        caption = instagram_post.select_caption("Motivation Captions.txt")
-    else:
-        caption = instagram_post.select_caption("Defeated Captions.txt")
-    
     print("Your Instagram post has been created!\n")
 
     print("Your photo(s) will appear in the project folder with the name you have given \
 and the caption for your photo(s) will appear below. \n")
 
     print(caption + "\n")
+
 
 if __name__ == "__main__":
     main()
