@@ -158,7 +158,7 @@ def main():
     print("Your Instagram post has been created!\n")
 
     print("Your photo(s) will appear in the project folder with the name you have given \
-and the caption for your photo(s) will appear below.")
+and the caption for your photo(s) will appear below. \n")
 
     print(caption + "\n")
 
