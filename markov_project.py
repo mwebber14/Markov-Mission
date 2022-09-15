@@ -1,10 +1,24 @@
 """
-Image Selection Program
-There are probablities linked with the transition from one
-image to the next image. The user can specify how many images
-they would like to have in their "post". Using the transisition
-we will output the number of pictures. The picture type will
-depend on the probabilities of it being selected
+Michael Webber
+CSCI 3725
+Markov Mission 3
+September 15th, 2022
+
+This file allows the user to input a couple of arguments, such as the 
+number of images the user wants, the name of the file where images will
+be saved, as well as the emotion they want the caption to evoke. Using this
+information, the program saves a PDF file with the images selected using 
+the markov probabilities. A caption is also randomly selected using the 
+emotion the user indicated. The goal is to create a template of an 
+Instagram post. Someone would not have to think too much for an Instagram
+post to be created.
+
+There are not any bugs within the code, but there are some modifications that
+will need to be made to the paths that are defined as constants at the 
+start of the program. The paths are currently specific to the machine they
+are written on, so they will not function for a different computer. I tried
+to go directly through the operating system so that thhe program could be used
+generally, but I could not figure it out in time.
 """
 from fileinput import filename
 import numpy as np
