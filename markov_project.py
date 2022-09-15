@@ -48,8 +48,12 @@ class ImageSelection:
                 post.
         """
         images = []
+        # The first photo is always randomly choosen
         current_image = random.choice(["Kicking", "Catching", "Standing"])
         images.append(current_image)
+
+        # The transition matrix is used for the selction of the 
+        # remaining images if there are any
         while len(images) < length:
             next_image = self.choose_next_image(current_image)
             images.append(next_image)
@@ -66,6 +70,8 @@ class ImageSelection:
         different photo files using code.
         https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python
         '''
+        # Creates the whole pathh that is going to be needed to open the
+        # images properly when the pdf is created
         name_of_images = []
         for image in list_images:
             if image == 'Catching':
@@ -150,6 +156,8 @@ def main():
 
     print("Choosing a caption...")
 
+    # Determines which caption folder that needs to be entered based on the 
+    # emotion that was expressed by the user
     if emotion == "motivated":
         caption = instagram_post.select_caption("Motivation Captions.txt")
     else:
