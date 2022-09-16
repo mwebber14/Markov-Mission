@@ -81,9 +81,6 @@ class ImageSelection:
         is randomly selected from the corresponding folder
         Args:
             image_list (list): the types of images to random select
-        The following website is where I discovered how to access the
-        different photo files using code.
-        https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python
         '''
         # Creates the whole pathh that is going to be needed to open the
         # images properly when the pdf is created

@@ -45,8 +45,21 @@ Personally Meaningful:
     so I can stay focused on playing the game.
 
 
-This website is what I used to get all of the quotes for my Defeat Captions folder
-https://www.therandomvibez.com/sad-day-quotes-sayings/
+How I was challened:
 
-This is the website I used to find the quotes for my Motivation Captions folder
-https://captionland.com/sports-captions-for-instagram/
+
+Why I think it is creative:
+
+
+Credit to sources:
+
+    I must first give credit to Brian Beard. He is the photographer for Bowdoin Mens Soccer
+    and all of the other athletics teams on campus. He provided me will all of these great photos
+    that I used for this project. I must also give credit to the following website:
+    https://www.codegrepper.com/code-examples/python/select+random+image+from+folder+python. It
+    was on this website that I was able to learn how to randomly select an image from a folder
+    using the operating system rather than the direct paths of the local machine. Lastly, all
+    of the captions that, both motivated and defeated, were found from the following two 
+    websites:
+    https://www.therandomvibez.com/sad-day-quotes-sayings/
+    https://captionland.com/sports-captions-for-instagram/
