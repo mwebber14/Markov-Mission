@@ -44,12 +44,30 @@ Personally Meaningful:
     this fall and the soccer season, I am hoping to use this program to quickly generate posts,
     so I can stay focused on playing the game.
 
-
 How I was challened:
 
+    I think this project was definitely a challenge for me. The biggest challenge at first was
+    the project as a whole and trying to think of something that would be unique and fun. Every
+    project that I have done in the past has had a very specific prompt with an expected end goal.
+    This was the first project where it was entirely up to me to decide what I did and what I
+    created. Figuring out where to start and what to do was certainly a challenge. I also found it
+    challenging to not think too big. Since we were only given a week for the project, I had to keep
+    my ideas concise and focused. Sometimes really grand plans would flash through my brain, but 
+    trying to conceive them in code was not possible given the time frame.     
+        I chose to use python, partially because I am comfortable with the language, but more importantly 
+    because of the unique functionality in PIL. I discovered that PIL has a very unique pdf creation 
+    function as well as a lot of other interesting functions to photoshop and edit images. Reading about
+    this library and its different functionalities was time consuming and difficult. It took me many hours
+    to correctly implement the few PIL functions that I ultimately incorporated.
 
 Why I think it is creative:
 
+    I think my program is creative, because I have never really come across something like it before.
+    I am sure that some sort of random Instagram post generator exists out there, but I have never seen it.
+    Additionally, this program is creating visual art that I would have never created. There is the off chance
+    I could have eventually combined photos in a unique way to create something that my program did, but given 
+    the volume of images and captions, I find it unlikely. Something that is creative is unique, and I believe
+    my program is unique for the basic criteria we were given.
 
 Credit to sources:
 
