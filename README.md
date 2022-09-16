@@ -24,7 +24,7 @@ How to run the code:
     later on. The final prompt is entering an emotion, either motivated or defeated. This will be used to 
     select the caption for the collection of images. After these prompts, the program will used the
     transition matrix in the main() function to select the images for the post. These will be saved
-    under the name the user provided in the Markov-Mission folder. The program will then take the 
+    under the name the user provided in the examples folder. The program will then take the 
     emotion entered and select a quote from the corresponding emotion folder. This quotation will be
     outputed in the terminal window. The program will then be finished executing. The pdf may not be 
     able to seen directly from an editor, but it can be viewed from where the project is saved on

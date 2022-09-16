@@ -28,10 +28,10 @@ from PIL import Image
 
 # CONSTANTS
 # MAKE SURE TO MODIFY THE PATH WITH RESPECT TO THE DEVICE
-PATH_STANDING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Standing"
-PATH_CATCHING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Catching"
-PATH_KICKING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/Kicking"
-PDF_PATH = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/"
+PATH_STANDING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/assets/Standing"
+PATH_CATCHING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/assets/Catching"
+PATH_KICKING = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/assets/Kicking"
+PDF_PATH = "/Users/michaelwebber/Desktop/Markov Mission/Markov-Mission/examples/"
 
 
 class ImageSelection:
